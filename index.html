@@ -179,20 +179,6 @@
             width: 26px;
         }
 
-        .bat-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-        .bat-selo {
-            background: #233f23;
-            border: 2px solid #bb9f4d;
-            border-radius: 40px;
-            padding: 8px 22px;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
         /* imagem placeholder */
         .img-placeholder {
             background: #1c351c;
@@ -206,6 +192,13 @@
             font-size: 1.2rem;
             background-image: repeating-linear-gradient(45deg, #2d4a2d 0px, #2d4a2d 15px, #1c311c 15px, #1c311c 30px);
             margin: 20px 0;
+            overflow: hidden;
+        }
+        .img-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 27px;
         }
         .img-placeholder i {
             margin-right: 12px;
@@ -289,6 +282,59 @@
             display: inline-block;
         }
 
+        /* leis / código penal */
+        .lei-bloco {
+            background: #1d2f1d;
+            border-left: 6px solid #b4944c;
+            margin-bottom: 25px;
+            padding: 18px;
+            border-radius: 0 30px 30px 0;
+        }
+        .lei-capitulo {
+            font-size: 1.6rem;
+            font-family: Oswald;
+            color: #e6cd8a;
+            margin-bottom: 15px;
+        }
+        .lei-artigo {
+            margin-left: 20px;
+            margin-bottom: 10px;
+            border-bottom: 1px dotted #5f7344;
+            padding-bottom: 5px;
+        }
+
+        /* hierarquia */
+        .hier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        .hier-card {
+            background: #1d341d;
+            border: 2px solid #c1a451;
+            border-radius: 30px;
+            padding: 15px;
+        }
+        .hier-titulo {
+            background: #2b492b;
+            border-radius: 30px;
+            padding: 8px 15px;
+            text-align: center;
+            font-size: 1.4rem;
+            font-family: Oswald;
+            color: #ffe794;
+            margin-bottom: 15px;
+        }
+        .hier-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            border-left: 3px solid #8f7b38;
+            padding-left: 10px;
+        }
+
         /* esconder abas */
         .tab-panel {
             display: none;
@@ -322,17 +368,18 @@
 
     <!-- abas -->
     <div class="tab-bar">
-        <div class="tab-btn ativo" id="tab1" data-tab="inicio"><i class="fas fa-house"></i> Início</div>
-        <div class="tab-btn" id="tab2" data-tab="noticias"><i class="fas fa-newspaper"></i> Notícias</div>
-        <div class="tab-btn" id="tab3" data-tab="regras"><i class="fas fa-scale-balanced"></i> Regras</div>
-        <div class="tab-btn" id="tab4" data-tab="batalhoes"><i class="fas fa-medal"></i> Batalhões</div>
+        <div class="tab-btn ativo" data-tab="inicio"><i class="fas fa-house"></i> Início</div>
+        <div class="tab-btn" data-tab="noticias"><i class="fas fa-newspaper"></i> Notícias</div>
+        <div class="tab-btn" data-tab="regras"><i class="fas fa-scale-balanced"></i> Regras</div>
+        <div class="tab-btn" data-tab="leis"><i class="fas fa-gavel"></i> Leis</div>
+        <div class="tab-btn" data-tab="hierarquia"><i class="fas fa-medal"></i> Hierarquia</div>
     </div>
 
     <!-- painel INÍCIO -->
     <div id="inicio" class="conteudo-tab tab-panel ativo">
         <!-- hero image placeholder -->
         <div class="img-placeholder" style="height:240px;">
-            <i class="fas fa-tree"></i> [ FOTO ÁREA: BASE MILITAR RAVEX ] <i class="fas fa-tree"></i>
+            <img src="imagens/img1.png" alt="Base Militar E.B RAVEX" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-tree\'></i> [ FOTO BASE MILITAR ] <i class=\'fas fa-tree\'></i>'">
         </div>
 
         <div class="grid-2">
@@ -353,9 +400,9 @@
                 <p style="font-size:1.6rem; font-family:Oswald;">"Aqui não é apenas um jogo."</p>
                 <p style="font-size:1.2rem; margin:20px 0">É disciplina, estratégia e trabalho em equipe. Se você busca evolução, respeito e desafios reais no Roblox, este é o seu lugar.</p>
                 <a href="https://www.roblox.com/pt/games/85874340768459/Ex-rcito-Brasileiro-do-Ravex" target="_blank" style="text-decoration: none;">
-                    <div style="background:#2b482b; border-radius:60px; padding:18px; text-align:center; border:2px solid #bea44c; text-decoration: none;">
+                    <div style="background:#2b482b; border-radius:60px; padding:18px; text-align:center; border:2px solid #bea44c;">
                         <i class="fas fa-hand-fist" style="font-size:2.5rem; color:#f5cf71;"></i>
-                        <p style="color:#f0e2a2; font-size:1.5rem; font-weight:bold; text-decoration: none;">Aliste-se agora</p>
+                        <p style="color:#f0e2a2; font-size:1.5rem; font-weight:bold;">Aliste-se agora</p>
                         <p style="color:#f0e2a2;">defenda o RAVEX! 🇧🇷</p>
                     </div>
                 </a>
@@ -363,9 +410,12 @@
         </div>
         <!-- linha de imagens pequenas -->
         <div style="display:flex; gap:20px; flex-wrap:wrap; margin: 30px 0;">
-            <div class="img-placeholder" style="flex:1; min-width:150px;"><i class="fas fa-camera"></i> QG</div>
-            <div class="img-placeholder" style="flex:1; min-width:150px;"><i class="fas fa-camera"></i> Instrução</div>
-            <div class="img-placeholder" style="flex:1; min-width:150px;"><i class="fas fa-camera"></i> CIE</div>
+            <div class="img-placeholder" style="flex:1; min-width:150px; height:120px;">
+                <img src="imagens/img3.png" alt="Soldados em treinamento" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-camera\'></i> TREINAMENTO'">
+            </div>
+            <div class="img-placeholder" style="flex:1; min-width:150px; height:120px;">
+                <img src="imagens/img2.png" alt="Entrada do Quartel" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-camera\'></i> QUARTEL'">
+            </div>
         </div>
         <div style="font-size:2.2rem; font-family:Oswald; text-align:center; color:#ebd894;">BRAÇO FORTE – MÃO AMIGA</div>
     </div>
@@ -375,27 +425,19 @@
         <h2 style="font-family:Oswald; font-size:2.5rem; margin-bottom:20px;"><i class="fas fa-newspaper"></i> Últimas notícias</h2>
         <div class="noticia-item">
             <div style="flex:1"><i class="fas fa-image" style="font-size:3rem; color:#bb9d4f;"></i></div>
-            <div style="flex:6"><span class="noticia-data"><i class="fas fa-calendar"></i> 01 MAR 2026</span>
-            <h3 style="font-size:1.8rem;">🪖 Operação Sentinela RAVEX</h3>
-            <p>No próximo sábado, missão conjunta entre Infantaria e BAC. Haverá promoções e medalhas. Compareça no QG.</p></div>
+            <div style="flex:6"><span class="noticia-data"><i class="fas fa-calendar"></i> 07 MAR 2026</span>
+            <h3 style="font-size:1.8rem;">🗣️ Debate de Candidatos à Presidência</h3>
+            <p>No próximo sábado, será realizado o debate entre os candidatos à presidência do E.B RAVEX. Todos os membros são convidados a comparecer ao QG às 14:00.</p></div>
         </div>
         <div class="noticia-item">
             <div style="flex:1"><i class="fas fa-image" style="font-size:3rem; color:#bb9d4f;"></i></div>
-            <div style="flex:6"><span class="noticia-data"><i class="fas fa-calendar"></i> 25 FEV 2026</span>
-            <h3 style="font-size:1.8rem;">🎖️ Novo curso de instrução</h3>
-            <p>Centro de treinamento tático agora oferece curso de Líder de Esquadra. Inscrições abertas para cabos e soldados.</p></div>
+            <div style="flex:6"><span class="noticia-data"><i class="fas fa-calendar"></i> 05 MAR 2026</span>
+            <h3 style="font-size:1.8rem;">📜 Nova Lei de Proteção de Dados</h3>
+            <p>Foi publicada a Lei de Proteção de Dados – proibida divulgação de prints sem autorização. Penalidades: rebaixamento e banimento de 7 dias.</p></div>
         </div>
-        <div class="noticia-item">
-            <div style="flex:1"><i class="fas fa-image" style="font-size:3rem; color:#bb9d4f;"></i></div>
-            <div style="flex:6"><span class="noticia-data"><i class="fas fa-calendar"></i> 20 FEV 2026</span>
-            <h3 style="font-size:1.8rem;">🏅 Batalhão CIE em destaque</h3>
-            <p>Centro de Inteligência concluiu missão de reconhecimento com 100% de aproveitamento. Honras ao mérito.</p></div>
-        </div>
-        <!-- placeholder imagem extra -->
-        <div class="img-placeholder" style="height:120px;"><i class="fas fa-image"></i> Arquivo de imagens: formatura geral</div>
     </div>
 
-    <!-- painel REGRAS (completo) -->
+    <!-- painel REGRAS (conteúdo original) -->
     <div id="regras" class="conteudo-tab tab-panel">
         <div style="text-align:center; margin-bottom:25px;">
             <i class="fas fa-scroll" style="font-size:3rem; color:#ddb85a;"></i>
@@ -421,34 +463,82 @@
         <div style="text-align:right; font-size:1.5rem; font-family:Oswald; margin-top:30px;">🛠️ Bom jogo a todos. 🇧🇷 Ordem, Disciplina e Justiça</div>
     </div>
 
-    <!-- painel BATALHÕES -->
-    <div id="batalhoes" class="conteudo-tab tab-panel">
-        <div class="grid-2">
-            <div class="card-militar">
-                <h2><i class="fas fa-eye"></i> CIE</h2>
-                <p><strong>Centro de Inteligência</strong> — olhos e ouvidos do EB. Missões de reconhecimento, análise e informações sigilosas.</p>
-                <div class="img-placeholder" style="height:100px;"><i class="fas fa-image"></i> Imagem CIE</div>
-            </div>
-            <div class="card-militar">
-                <h2><i class="fas fa-bolt"></i> BAC</h2>
-                <p><strong>Batalhão de Ações e Comandos</strong> — força de operações especiais, respostas rápidas e alto risco.</p>
-                <div class="img-placeholder" style="height:100px;"><i class="fas fa-image"></i> Imagem BAC</div>
-            </div>
-            <div class="card-militar">
-                <h2><i class="fas fa-person-walking"></i> Infantaria</h2>
-                <p>Linha de frente, patrulhas e ocupação tática. A espinha do Exército.</p>
-                <div class="img-placeholder" style="height:100px;"><i class="fas fa-image"></i> Imagem Infantaria</div>
-            </div>
-            <div class="card-militar">
-                <h2><i class="fas fa-chess-queen"></i> Comando Geral</h2>
-                <p>Alta patente, estratégia global e gestão do quartel. Tomada de decisões.</p>
-                <div class="img-placeholder" style="height:100px;"><i class="fas fa-image"></i> Imagem Comando</div>
+    <!-- painel LEIS (Código Penal, Leis específicas) -->
+    <div id="leis" class="conteudo-tab tab-panel">
+        <div style="text-align:center; margin-bottom:20px;">
+            <i class="fas fa-gavel" style="font-size:3rem; color:#d4af37;"></i>
+            <h2 style="font-family:Oswald; font-size:2.5rem;">CÓDIGO DE LEIS – E.B RAVEX</h2>
+            <p>Baseado na ordem, disciplina e justiça</p>
+        </div>
+
+        <div class="lei-bloco">
+            <div class="lei-capitulo"><i class="fas fa-scroll"></i> CAPÍTULO I — DISPOSIÇÕES GERAIS</div>
+            <div class="lei-artigo">Art. 1º Todos os membros são iguais perante as leis do E.B Ravex.</div>
+            <div class="lei-artigo">Art. 2º Nenhuma punição poderá ser aplicada sem provas claras e verificáveis.</div>
+            <div class="lei-artigo">Art. 3º A hierarquia deve ser respeitada, porém não se sobrepõe à justiça.</div>
+            <div class="lei-artigo">Art. 4º É garantido ao acusado o direito de defesa.</div>
+        </div>
+
+        <div class="lei-bloco">
+            <div class="lei-capitulo"><i class="fas fa-shield"></i> CAPÍTULO II — DA CONDUTA MILITAR</div>
+            <div class="lei-artigo">Art. 5º Todo militar deve manter postura, respeito e disciplina dentro e fora do servidor.</div>
+            <div class="lei-artigo">Art. 6º É proibido abuso de autoridade, ameaça ou coação usando patente ou cargo.</div>
+            <div class="lei-artigo">Art. 7º Desrespeito verbal, ofensas ou provocações são infrações disciplinares.</div>
+            <div class="lei-artigo">Art. 8º A insubordinação caracteriza-se pela recusa injustificada de ordens legais.</div>
+        </div>
+
+        <div class="lei-bloco">
+            <div class="lei-capitulo"><i class="fas fa-balance-scale"></i> CAPÍTULO III — DAS INFRAÇÕES E PENALIDADES</div>
+            <div class="lei-artigo"><strong>Leves:</strong> atraso, descuido com uniforme – advertência.</div>
+            <div class="lei-artigo"><strong>Médias:</strong> descumprimento de ordem, ausência – suspensão, rebaixamento temporário.</div>
+            <div class="lei-artigo"><strong>Graves:</strong> desrespeito a superior, abuso – rebaixamento definitivo, banimento temporário.</div>
+            <div class="lei-artigo"><strong>Gravíssimas:</strong> racismo, corrupção, motim – banimento permanente.</div>
+        </div>
+
+        <div class="lei-bloco">
+            <div class="lei-capitulo"><i class="fas fa-handcuffs"></i> LEI DE USO DE ALGEMAS</div>
+            <div class="lei-artigo">Art. 1º Uso restrito a 3º Sargento ou superior.</div>
+            <div class="lei-artigo">Art. 2º Permitido apenas em prisões autorizadas e contenção necessária.</div>
+            <div class="lei-artigo">Art. 3º Abuso resulta em julgamento no STM e possível banimento.</div>
+        </div>
+
+        <div class="lei-bloco">
+            <div class="lei-capitulo"><i class="fas fa-database"></i> LEI DE PROTEÇÃO DE DADOS</div>
+            <div class="lei-artigo">🚫 Proibido enviar prints em canais públicos. Permitido apenas em tickets ou admin.</div>
+            <div class="lei-artigo">⚠️ Vazamento de dados: rebaixamento + 7 dias de banimento.</div>
+        </div>
+
+        <div class="penalidades-bar" style="margin-top:10px;">
+            <span><i class="fas fa-file"></i> Advertência</span> <span><i class="fas fa-gavel"></i> Punição</span> <span><i class="fas fa-clock"></i> Castigo</span> <span><i class="fas fa-arrow-down"></i> Rebaixamento</span> <span><i class="fas fa-door-open"></i> Exílio</span> <span><i class="fas fa-hammer"></i> Banimento</span>
+        </div>
+        <div style="text-align:center; margin-top:25px; font-family:Oswald;">🇧🇷 JUSTIÇA ACIMA DE PATENTE</div>
+    </div>
+
+    <!-- painel HIERARQUIA -->
+    <div id="hierarquia" class="conteudo-tab tab-panel">
+        <h2 style="font-family:Oswald; font-size:2.5rem; text-align:center; margin-bottom:25px;"><i class="fas fa-medal"></i> HIERARQUIA OFICIAL – E.B RAVEX</h2>
+        <p style="text-align:center; margin-bottom:20px;">“A disciplina é a alma do Exército.”</p>
+
+        <div class="hier-grid">
+            <div class="hier-card"><div class="hier-titulo">👑 AUTORIDADE MÁXIMA</div><div class="hier-item">[CR] Criador</div></div>
+            <div class="hier-card"><div class="hier-titulo">⭐ ALTO COMANDO</div><div class="hier-item">[SD] Sub Dono</div><div class="hier-item">[CMD] Comandante Geral</div><div class="hier-item">[GEN-EX] General de Exército</div><div class="hier-item">[GEN-DIV] General de Divisão</div><div class="hier-item">[GEN-BRIG] General de Brigada</div></div>
+            <div class="hier-card"><div class="hier-titulo">⚖️ JUSTIÇA MILITAR</div><div class="hier-item">[STM] Ministro STM</div><div class="hier-item">[STM-JUIZ] Juiz Militar</div><div class="hier-item">[STM-REL] Relator</div></div>
+            <div class="hier-card"><div class="hier-titulo">🎖 OFICIAIS SUPERIORES</div><div class="hier-item">[CEL] Coronel</div><div class="hier-item">[TEN-CEL] Tenente-Coronel</div><div class="hier-item">[MAJ] Major</div></div>
+            <div class="hier-card"><div class="hier-titulo">🎖 OFICIAIS INTERMEDIÁRIOS</div><div class="hier-item">[CAP] Capitão</div><div class="hier-item">[1TEN] 1º Tenente</div><div class="hier-item">[2TEN] 2º Tenente</div><div class="hier-item">[ASP] Aspirante a Oficial</div></div>
+            <div class="hier-card"><div class="hier-titulo">🪖 GRADUADOS</div><div class="hier-item">[ST] Subtenente</div><div class="hier-item">[1SGT] 1º Sargento</div><div class="hier-item">[2SGT] 2º Sargento</div><div class="hier-item">[3SGT] 3º Sargento</div></div>
+            <div class="hier-card"><div class="hier-titulo">🎯 PRAÇAS</div><div class="hier-item">[CB] Cabo</div><div class="hier-item">[SLD] Soldado</div><div class="hier-item">[RCT] Recruta</div></div>
+        </div>
+
+        <div style="margin-top:30px;">
+            <h3 style="font-family:Oswald; font-size:2rem;">📌 DIVISÕES</h3>
+            <div style="display:flex; flex-wrap:wrap; gap:15px; margin-top:15px;">
+                <div style="background:#1f3a1f; border-radius:40px; padding:15px; flex:1;"><i class="fas fa-eye"></i> <strong>CIE</strong> – Comandante, Oficial, Agente, Estagiário</div>
+                <div style="background:#1f3a1f; border-radius:40px; padding:15px; flex:1;"><i class="fas fa-bolt"></i> <strong>BAC</strong> – Comandante, Oficial, Sargento, Soldado</div>
+                <div style="background:#1f3a1f; border-radius:40px; padding:15px; flex:1;"><i class="fas fa-building"></i> <strong>SGEX</strong> – Secretário, Oficial Admin, Administrador, Sênior, Estagiário</div>
             </div>
         </div>
-        <!-- lista completa batalhões -->
-        <div style="background:#233823; border-radius:60px; padding:15px; margin-top:20px; text-align:center; font-size:1.4rem;">
-            <i class="fas fa-shield"></i> CIE | BAC | INFANTARIA | COMANDO GERAL
-        </div>
+
+        <div style="text-align:center; font-size:1.4rem; margin-top:25px;">🇧🇷 HIERARQUIA • DISCIPLINA • RESPEITO</div>
     </div>
 
     <!-- rodapé -->
@@ -458,22 +548,19 @@
     </div>
 </div>
 
-<!-- scripts para abas e interação -->
+<!-- scripts para abas -->
 <script>
     (function() {
         const tabs = document.querySelectorAll('.tab-btn');
         const paineis = document.querySelectorAll('.tab-panel');
 
         function ativarAba(alvoId) {
-            // desativar todas
             tabs.forEach(t => t.classList.remove('ativo'));
             paineis.forEach(p => p.classList.remove('ativo'));
 
-            // ativar botão correspondente
             const btnAtivo = Array.from(tabs).find(t => t.dataset.tab === alvoId);
             if (btnAtivo) btnAtivo.classList.add('ativo');
 
-            // ativar painel
             const painelAtivo = document.getElementById(alvoId);
             if (painelAtivo) painelAtivo.classList.add('ativo');
         }
@@ -481,15 +568,12 @@
         tabs.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
-                const abaId = btn.dataset.tab; // 'inicio', 'noticias' ...
+                const abaId = btn.dataset.tab;
                 ativarAba(abaId);
-                // toast opcional
             });
         });
 
-        // botoes simulados (opcional)
-        // nenhum backend, mas podemos simular clique em denuncia etc
-        // criamos um pequeno tost sem atrapalhar
+        // toast simples para simular ações (opcional)
         const styleToast = document.createElement('style');
         styleToast.innerHTML = `
             .toast-simulado {
@@ -511,11 +595,8 @@
             setTimeout(() => t.style.display = 'none', 2000);
         };
 
-        // adicionar eventos para os botões de notificação se existirem (nao existem na nova versão mas podemos adicionar algo)
-        // como bônus, ao clicar no footer algo
         document.querySelector('.footer-eb').addEventListener('click', () => mostrarToast('📢 EB RAVEX - Ordem e Progresso'));
     })();
 </script>
-<!-- espaço para imagem extra garantia -->
 </body>
 </html>
