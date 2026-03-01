@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E.B RAVEX · Exército Brasileiro [Roblox]</title>
+    <!-- Fontes & ícones -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a280a;
+            background-image: radial-gradient(circle at 10% 30%, #1f4a1f, #082008);
+            font-family: 'Open Sans', sans-serif;
+            color: #ede6cf;
+            padding: 18px;
+            min-height: 100vh;
+        }
+
+        /* container camuflado */
+        .main-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: rgba(8, 25, 8, 0.85);
+            backdrop-filter: blur(3px);
+            border: 3px solid #806d3a;
+            border-radius: 40px 40px 30px 30px;
+            box-shadow: 0 0 30px #000000aa, inset 0 0 40px #2b4f2b;
+            padding: 25px 30px;
+        }
+
+        /* header com brasão */
+        .header-eb {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #b69e4c;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .titulo-eb h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #f7e9b0;
+            text-shadow: 4px 4px 0 #3f6b1f, 6px 6px 0 #102010;
+            letter-spacing: 2px;
+        }
+        .titulo-eb h1 i {
+            color: #e6c34a;
+            margin-right: 12px;
+        }
+        .subtitulo {
+            font-size: 1.1rem;
+            color: #cfc27a;
+            border-left: 6px solid #9b873d;
+            padding-left: 15px;
+            margin-top: 5px;
+        }
+
+        .stats-rapidas {
+            background: #173017;
+            border: 2px solid #8f7d47;
+            border-radius: 60px;
+            padding: 10px 25px;
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            box-shadow: inset 0 0 10px #00000066, 0 6px 0 #2b442b;
+        }
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+        .stat-item i {
+            font-size: 1.8rem;
+            color: #ffda7a;
+        }
+        .stat-item .numero {
+            font-size: 2rem;
+            font-family: Oswald;
+            color: white;
+        }
+
+        /* abas */
+        .tab-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 25px 0 10px;
+            border-bottom: 2px solid #6f5f33;
+            padding-bottom: 8px;
+        }
+        .tab-btn {
+            background: #1d361d;
+            border: 2px solid #6d5c30;
+            color: #eedbaa;
+            font-family: Oswald, sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            padding: 12px 32px;
+            border-radius: 40px 40px 0 0;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .tab-btn i {
+            color: #efc96e;
+        }
+        .tab-btn.ativo {
+            background: #2c4d2c;
+            border-bottom: 2px solid #efd575;
+            transform: translateY(-3px);
+            box-shadow: 0 -5px 0 #836f36;
+            color: #fff2c2;
+        }
+
+        /* conteúdo das abas */
+        .conteudo-tab {
+            background: rgba(15, 30, 15, 0.7);
+            border: 2px solid #9b8a4b;
+            border-radius: 40px;
+            padding: 30px;
+            margin-top: 10px;
+            box-shadow: inset 0 0 30px #1f3a1f;
+        }
+
+        /* cards e grids */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        .card-militar {
+            background: #1f341f;
+            border: 2px solid #a38844;
+            border-radius: 30px;
+            padding: 22px;
+            box-shadow: 0 8px 0 #2d432d;
+        }
+        .card-militar h2 {
+            font-family: Oswald;
+            font-size: 2rem;
+            border-bottom: 3px solid #c7aF4a;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            color: #ead094;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .lista-items li {
+            list-style: none;
+            margin-bottom: 14px;
+            font-size: 1.15rem;
+            border-left: 4px solid #b1973e;
+            padding-left: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .lista-items i {
+            color: #f1cd6b;
+            width: 26px;
+        }
+
+        .bat-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .bat-selo {
+            background: #233f23;
+            border: 2px solid #bb9f4d;
+            border-radius: 40px;
+            padding: 8px 22px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* imagem placeholder */
+        .img-placeholder {
+            background: #1c351c;
+            border: 3px dashed #a69054;
+            border-radius: 30px;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b6a568;
+            font-size: 1.2rem;
+            background-image: repeating-linear-gradient(45deg, #2d4a2d 0px, #2d4a2d 15px, #1c311c 15px, #1c311c 30px);
+            margin: 20px 0;
+        }
+        .img-placeholder i {
+            margin-right: 12px;
+            font-size: 2.2rem;
+            color: #cdaa5d;
+        }
+
+        /* regras grid */
+        .regras-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+            margin: 25px 0;
+        }
+        .regra-card {
+            background: #1e311e;
+            border-left: 8px solid #c9a74b;
+            border-radius: 0 25px 25px 0;
+            padding: 15px;
+            box-shadow: 0 5px 0 #3b2f15;
+        }
+        .regra-titulo {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #eedb9b;
+            margin-bottom: 6px;
+        }
+        .regra-texto {
+            color: #dbd4b5;
+            padding-left: 5px;
+        }
+
+        .penalidades-bar {
+            background: #1d1508;
+            border: 2px solid #ad8d42;
+            border-radius: 50px;
+            padding: 16px 25px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px 35px;
+            justify-content: center;
+            font-weight: 600;
+            margin-top: 30px;
+        }
+        .penalidades-bar span i {
+            color: #e0963a;
+            margin-right: 6px;
+        }
+
+        .footer-eb {
+            margin-top: 45px;
+            border-top: 3px solid #8f783b;
+            padding: 25px 10px 10px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            color: #bcaf7c;
+        }
+        .lema {
+            font-family: Oswald;
+            font-size: 1.8rem;
+            color: #f2d676;
+        }
+
+        /* notícias */
+        .noticia-item {
+            background: #1d321d;
+            border-radius: 30px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #b1974a;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .noticia-data {
+            background: #54401f;
+            border-radius: 50px;
+            padding: 5px 20px;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        /* esconder abas */
+        .tab-panel {
+            display: none;
+        }
+        .tab-panel.ativo {
+            display: block;
+        }
+
+        /* responsividade */
+        @media (max-width: 800px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .tab-btn { font-size: 1rem; padding: 10px 16px; }
+        }
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <!-- cabeçalho -->
+    <div class="header-eb">
+        <div class="titulo-eb">
+            <h1><i class="fas fa-shield-halos"></i> E.B RAVEX</h1>
+            <div class="subtitulo"><i class="fas fa-map-location-dot"></i> Campo de Operações · Roblox · Roleplay Militar</div>
+            <div style="margin-top:5px;"><i class="fas fa-crown" style="color:#dbb957;"></i> Fundador: Ravex</div>
+        </div>
+        <div class="stats-rapidas">
+            <div class="stat-item"><i class="fas fa-user-group"></i><span class="numero">93%</span> <span>aprov.</span></div>
+            <div class="stat-item"><i class="fas fa-person-rifle"></i><span class="numero">6</span> <span>ativos</span></div>
+            <div class="stat-item"><i class="fas fa-flag"></i><span class="numero">+200</span> <span>recrutas</span></div>
+        </div>
+    </div>
+
+    <!-- abas -->
+    <div class="tab-bar">
+        <div class="tab-btn ativo" id="tab1" data-tab="inicio"><i class="fas fa-house"></i> Início</div>
+        <div class="tab-btn" id="tab2" data-tab="noticias"><i class="fas fa-newspaper"></i> Notícias</div>
+        <div class="tab-btn" id="tab3" data-tab="regras"><i class="fas fa-scale-balanced"></i> Regras</div>
+        <div class="tab-btn" id="tab4" data-tab="batalhoes"><i class="fas fa-medal"></i> Batalhões</div>
+    </div>
+
+    <!-- painel INÍCIO -->
+    <div id="inicio" class="conteudo-tab tab-panel ativo">
+        <!-- hero image placeholder -->
+        <div class="img-placeholder" style="height:240px;">
+            <i class="fas fa-tree"></i> [ FOTO ÁREA: BASE MILITAR RAVEX ] <i class="fas fa-tree"></i>
+        </div>
+
+        <div class="grid-2">
+            <div class="card-militar">
+                <h2><i class="fas fa-compass"></i> O que encontrar</h2>
+                <ul class="lista-items">
+                    <li><i class="fas fa-base"></i> Base militar estruturada</li>
+                    <li><i class="fas fa-bullseye"></i> Centro treinamentos táticos</li>
+                    <li><i class="fas fa-road"></i> Pista de obstáculos</li>
+                    <li><i class="fas fa-building"></i> Quartel-General (QG)</li>
+                    <li><i class="fas fa-skull"></i> Operações especiais</li>
+                    <li><i class="fas fa-ranking-star"></i> Hierarquia e promoções</li>
+                    <li><i class="fas fa-calendar"></i> Eventos e missões</li>
+                </ul>
+            </div>
+            <div class="card-militar">
+                <h2><i class="fas fa-quote-right"></i> Citação</h2>
+                <p style="font-size:1.6rem; font-family:Oswald;">"Aqui não é apenas um jogo."</p>
+                <p style="font-size:1.2rem; margin:20px 0">É disciplina, estratégia e trabalho em equipe. Se você busca evolução, respeito e desafios reais no Roblox, este é o seu lugar.</p>
+                <div style="background:#2b482b; border-radius:60px; padding:18px; text-align:center; border:2px solid #bea44c;">
+                    <i class="fas fa-hand-fist" style="font-size:2.5rem; color:#f5cf71;"></i>
+                    <p style="font-size:1.5rem; font-weight:bold;">Aliste-se agora</p>
+                    <p style="color:#f0e2a2;">defenda o RAVEX! 🇧🇷</p>
+                </div>
+            </div>
+        </div>
+        <!-- linha de imagens pequenas -->
+        <div style="display:flex; gap:20px; flex-wrap:wrap; margin: 30px 0;">
+            <div class="img-placeholder" style="flex:1; min-width:150px;"><i class="fas fa-camera"></i> QG</div>
+            <div class="img-placeholder" style="flex:1; min-width:150px;"><i class="fas fa-camera"></i> Instrução</div>
+            <div class="img-placeholder" style="flex:1; min-width:150px;"><i class="fas fa-camera"></i> CIE</div>
+        </div>
+        <div style="font-size:2.2rem; font-family:Oswald; text-align:center; color:#ebd894;">BRAÇO FORTE – MÃO AMIGA</div>
+    </div>
+
+    <!-- painel NOTÍCIAS -->
+    <div id="noticias" class="conteudo-tab tab-panel">
+        <h2 style="font-family:Oswald; font-size:2.5rem; margin-bottom:20px;"><i class="fas fa-newspaper"></i> Últimas notícias</h2>
+        <div class="noticia-item">
+            <div style="flex:1"><i class="fas fa-image" style="font-size:3rem; color:#bb9d4f;"></i></div>
+            <div style="flex:6"><span class="noticia-data"><i class="fas fa-calendar"></i> 01 MAR 2026</span>
+            <h3 style="font-size:1.8rem;">🪖 Operação Sentinela RAVEX</h3>
+            <p>No próximo sábado, missão conjunta entre Infantaria e BAC. Haverá promoções e medalhas. Compareça no QG.</p></div>
+        </div>
+        <div class="noticia-item">
+            <div style="flex:1"><i class="fas fa-image" style="font-size:3rem; color:#bb9d4f;"></i></div>
+            <div style="flex:6"><span class="noticia-data"><i class="fas fa-calendar"></i> 25 FEV 2026</span>
+            <h3 style="font-size:1.8rem;">🎖️ Novo curso de instrução</h3>
+            <p>Centro de treinamento tático agora oferece curso de Líder de Esquadra. Inscrições abertas para cabos e soldados.</p></div>
+        </div>
+        <div class="noticia-item">
+            <div style="flex:1"><i class="fas fa-image" style="font-size:3rem; color:#bb9d4f;"></i></div>
+            <div style="flex:6"><span class="noticia-data"><i class="fas fa-calendar"></i> 20 FEV 2026</span>
+            <h3 style="font-size:1.8rem;">🏅 Batalhão CIE em destaque</h3>
+            <p>Centro de Inteligência concluiu missão de reconhecimento com 100% de aproveitamento. Honras ao mérito.</p></div>
+        </div>
+        <!-- placeholder imagem extra -->
+        <div class="img-placeholder" style="height:120px;"><i class="fas fa-image"></i> Arquivo de imagens: formatura geral</div>
+    </div>
+
+    <!-- painel REGRAS (completo) -->
+    <div id="regras" class="conteudo-tab tab-panel">
+        <div style="text-align:center; margin-bottom:25px;">
+            <i class="fas fa-scroll" style="font-size:3rem; color:#ddb85a;"></i>
+            <h2 style="font-family:Oswald; font-size:2.5rem;">REGRAS OFICIAIS – E.B RAVEX</h2>
+            <p style="font-size:1.2rem;">Servidor Oficial · Roleplay Militar · Fundador Ravex</p>
+        </div>
+        <div class="regras-grid">
+            <div class="regra-card"><span class="regra-titulo">1️⃣ Fundador</span><div class="regra-texto">Proibido mencionar/cobrar Ravex sem autorização ou extrema necessidade.</div></div>
+            <div class="regra-card"><span class="regra-titulo">2️⃣ Alto Comando</span><div class="regra-texto">Marcar só como último recurso se oficial/setor não resolver.</div></div>
+            <div class="regra-card"><span class="regra-titulo">3️⃣ Oficiais</span><div class="regra-texto">Marcar apenas assuntos do EB/Discord, nunca opinião pessoal.</div></div>
+            <div class="regra-card"><span class="regra-titulo">4️⃣ Spam/Flood</span><div class="regra-texto">Proibido spam de emojis, gifs, links, imagens, enquetes sem autorização.</div></div>
+            <div class="regra-card"><span class="regra-titulo">5️⃣ Conduta</span><div class="regra-texto">Sem palavrões, linguagem ofensiva, conteúdo adulto ou baixo calão.</div></div>
+            <div class="regra-card"><span class="regra-titulo">6️⃣ Divulgação</span><div class="regra-texto">Proibida divulgação no servidor ou no privado de membros.</div></div>
+            <div class="regra-card"><span class="regra-titulo">7️⃣ Respeito</span><div class="regra-texto">Ofensa, calúnia, preconceito, assédio: tolerância zero.</div></div>
+            <div class="regra-card"><span class="regra-titulo">8️⃣ Privacidade</span><div class="regra-texto">Perguntas de cunho pessoal proibidas na comunidade.</div></div>
+            <div class="regra-card"><span class="regra-titulo">9️⃣ Canais de voz</span><div class="regra-texto">Gritar, música alta, linguagem inadequada: proibido.</div></div>
+            <div class="regra-card"><span class="regra-titulo">➕ Disposição</span><div class="regra-texto">Adm não se responsabiliza por violações de membros.</div></div>
+            <div class="regra-card"><span class="regra-titulo">⚖️ Penalidades</span><div class="regra-texto">Advertência, punição, castigo, rebaixamento, exílio, banimento.</div></div>
+        </div>
+        <div class="penalidades-bar">
+            <span><i class="fas fa-file"></i> Advertência</span> <span><i class="fas fa-gavel"></i> Punição</span> <span><i class="fas fa-clock"></i> Castigo</span> <span><i class="fas fa-arrow-down"></i> Rebaixamento</span> <span><i class="fas fa-door-open"></i> Exílio</span> <span><i class="fas fa-hammer"></i> Banimento</span>
+        </div>
+        <div style="text-align:right; font-size:1.5rem; font-family:Oswald; margin-top:30px;">🛠️ Bom jogo a todos. 🇧🇷 Ordem, Disciplina e Justiça</div>
+    </div>
+
+    <!-- painel BATALHÕES -->
+    <div id="batalhoes" class="conteudo-tab tab-panel">
+        <div class="grid-2">
+            <div class="card-militar">
+                <h2><i class="fas fa-eye"></i> CIE</h2>
+                <p><strong>Centro de Inteligência</strong> — olhos e ouvidos do EB. Missões de reconhecimento, análise e informações sigilosas.</p>
+                <div class="img-placeholder" style="height:100px;"><i class="fas fa-image"></i> Imagem CIE</div>
+            </div>
+            <div class="card-militar">
+                <h2><i class="fas fa-bolt"></i> BAC</h2>
+                <p><strong>Batalhão de Ações e Comandos</strong> — força de operações especiais, respostas rápidas e alto risco.</p>
+                <div class="img-placeholder" style="height:100px;"><i class="fas fa-image"></i> Imagem BAC</div>
+            </div>
+            <div class="card-militar">
+                <h2><i class="fas fa-person-walking"></i> Infantaria</h2>
+                <p>Linha de frente, patrulhas e ocupação tática. A espinha do Exército.</p>
+                <div class="img-placeholder" style="height:100px;"><i class="fas fa-image"></i> Imagem Infantaria</div>
+            </div>
+            <div class="card-militar">
+                <h2><i class="fas fa-chess-queen"></i> Comando Geral</h2>
+                <p>Alta patente, estratégia global e gestão do quartel. Tomada de decisões.</p>
+                <div class="img-placeholder" style="height:100px;"><i class="fas fa-image"></i> Imagem Comando</div>
+            </div>
+        </div>
+        <!-- lista completa batalhões -->
+        <div style="background:#233823; border-radius:60px; padding:15px; margin-top:20px; text-align:center; font-size:1.4rem;">
+            <i class="fas fa-shield"></i> CIE | BAC | INFANTARIA | COMANDO GERAL
+        </div>
+    </div>
+
+    <!-- rodapé -->
+    <div class="footer-eb">
+        <div><i class="fas fa-copyright"></i> E.B RAVEX · Roblox · Exército Brasileiro</div>
+        <div><i class="fas fa-helmet-safety"></i> Fundador Ravex</div>
+    </div>
+</div>
+
+<!-- scripts para abas e interação -->
+<script>
+    (function() {
+        const tabs = document.querySelectorAll('.tab-btn');
+        const paineis = document.querySelectorAll('.tab-panel');
+
+        function ativarAba(alvoId) {
+            // desativar todas
+            tabs.forEach(t => t.classList.remove('ativo'));
+            paineis.forEach(p => p.classList.remove('ativo'));
+
+            // ativar botão correspondente
+            const btnAtivo = Array.from(tabs).find(t => t.dataset.tab === alvoId);
+            if (btnAtivo) btnAtivo.classList.add('ativo');
+
+            // ativar painel
+            const painelAtivo = document.getElementById(alvoId);
+            if (painelAtivo) painelAtivo.classList.add('ativo');
+        }
+
+        tabs.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const abaId = btn.dataset.tab; // 'inicio', 'noticias' ...
+                ativarAba(abaId);
+                // toast opcional
+            });
+        });
+
+        // botoes simulados (opcional)
+        // nenhum backend, mas podemos simular clique em denuncia etc
+        // criamos um pequeno tost sem atrapalhar
+        const styleToast = document.createElement('style');
+        styleToast.innerHTML = `
+            .toast-simulado {
+                position: fixed; bottom: 20px; right: 20px; background: #282008; border: 3px solid #baa257; color: #efe8b0; padding: 15px 30px; border-radius: 60px; font-weight: bold; z-index: 999; display: none; backdrop-filter: blur(6px);
+            }
+        `;
+        document.head.appendChild(styleToast);
+        const toast = document.createElement('div');
+        toast.className = 'toast-simulado';
+        toast.id = 'toastAviso';
+        toast.innerHTML = '<i class="fas fa-check-circle" style="color: #c5b05b;"></i> <span>Função simulada (demo)</span>';
+        document.body.appendChild(toast);
+
+        window.mostrarToast = function(msg) {
+            const t = document.getElementById('toastAviso');
+            t.querySelector('span').innerText = msg;
+            t.style.display = 'flex';
+            t.style.gap = '12px';
+            setTimeout(() => t.style.display = 'none', 2000);
+        };
+
+        // adicionar eventos para os botões de notificação se existirem (nao existem na nova versão mas podemos adicionar algo)
+        // como bônus, ao clicar no footer algo
+        document.querySelector('.footer-eb').addEventListener('click', () => mostrarToast('📢 EB RAVEX - Ordem e Progresso'));
+    })();
+</script>
+<!-- espaço para imagem extra garantia -->
+</body>
+</html>
